@@ -1,6 +1,101 @@
 {
     "actorSpecification": 1,
-    "fields": {},
+    "fields": {
+        "type": "object",
+        "properties": {
+            "url": {
+                "type": "string",
+                "title": "URL",
+                "description": "Direct link to the hotel detail page on Google Travel.",
+                "example": "https://www.google.com/travel/hotels/entity/abc123"
+            },
+            "title": {
+                "type": "string",
+                "title": "Hotel name",
+                "description": "Name of the hotel as displayed on Google Travel.",
+                "example": "Hilton Prague"
+            },
+            "website": {
+                "type": "string",
+                "title": "Website",
+                "description": "Official website URL of the hotel, if available.",
+                "example": "https://www.hilton.com"
+            },
+            "address": {
+                "type": "string",
+                "title": "Address",
+                "description": "Street address of the hotel, if available.",
+                "example": "Pobrezni 1, 186 00 Karlin, Czechia"
+            },
+            "phone": {
+                "type": "string",
+                "title": "Phone",
+                "description": "Contact phone number of the hotel, if available.",
+                "example": "+420 224 841 111"
+            },
+            "photos": {
+                "type": "array",
+                "title": "Photos",
+                "description": "List of photo image URLs of the hotel.",
+                "items": { "type": "string" },
+                "example": ["https://lh3.googleusercontent.com/photo1", "https://lh3.googleusercontent.com/photo2"]
+            },
+            "thumbnail": {
+                "type": "string",
+                "title": "Thumbnail",
+                "description": "URL of the first/primary hotel photo used as a thumbnail.",
+                "example": "https://lh3.googleusercontent.com/photo1"
+            },
+            "rating": {
+                "type": "number",
+                "title": "Rating",
+                "description": "Average guest rating of the hotel (0 when no reviews are available).",
+                "example": 4.5
+            },
+            "reviews": {
+                "type": "number",
+                "title": "Number of reviews",
+                "description": "Total number of guest reviews (0 when no reviews are available).",
+                "example": 1234
+            },
+            "priceRange": {
+                "type": "string",
+                "title": "Price range",
+                "description": "Price or price range across providers in the selected currency. A single value when only one price is found, or a 'min - max' range.",
+                "example": "120 - 180"
+            },
+            "prices": {
+                "type": "array",
+                "title": "Prices",
+                "description": "Per-provider prices with a link to book.",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "provider": {
+                            "type": "string",
+                            "title": "Provider",
+                            "description": "Name of the booking provider.",
+                            "example": "Booking.com"
+                        },
+                        "price": {
+                            "type": "number",
+                            "title": "Price",
+                            "description": "Nightly price offered by the provider in the selected currency.",
+                            "example": 149
+                        },
+                        "link": {
+                            "type": "string",
+                            "title": "Link",
+                            "description": "Link to the provider's booking page.",
+                            "example": "https://www.google.com/travel/clk?..."
+                        }
+                    },
+                    "required": ["provider", "price", "link"]
+                }
+            }
+        },
+        "required": ["url", "title", "photos", "rating", "reviews", "prices"]
+    },
     "views": {
         "hotels": {
             "title": "Overview",
